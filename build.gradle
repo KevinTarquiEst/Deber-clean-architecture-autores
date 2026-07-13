@@ -37,7 +37,6 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testAnnotationProcessor 'org.projectlombok:lombok'
-    2
 
     //MAP STRUCT
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"

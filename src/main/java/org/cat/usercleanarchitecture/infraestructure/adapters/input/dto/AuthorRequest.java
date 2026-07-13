@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AutorRequest {
+public class AuthorRequest {
 
     private String firstName;
     private String lastName;
