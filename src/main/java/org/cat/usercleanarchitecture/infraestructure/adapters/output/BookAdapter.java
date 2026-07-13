@@ -21,7 +21,7 @@ public class BookAdapter implements BookPort {
 
     @Override
     public Book create(Book book) {
-        AuthorEntity authorEntity = authorRepository.findById(book.getAuthorId()).orElseThrow(() -> new IllegalArgumentException("The author does not exist"));
+        AuthorEntity authorEntity = authorRepository.getReferenceById(book.getAuthorId());
         BookEntity bookEntityToSave = BookEntityMapper.INSTANCE.toBookEntity(book);
         bookEntityToSave.setAuthor(authorEntity);
         BookEntity bookEntity = bookRepository.save(bookEntityToSave);

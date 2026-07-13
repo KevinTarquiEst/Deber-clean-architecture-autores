@@ -6,5 +6,4 @@ import java.util.UUID;
 
 public interface IAuthorUseCase {
     Author create(Author author);
-    Author findById(UUID authorId);
 }

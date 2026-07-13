@@ -5,8 +5,6 @@ import org.cat.usercleanarchitecture.aplication.ports.output.AuthorPort;
 import org.cat.usercleanarchitecture.domain.model.Author;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
 public class AuthorUseCaseImpl implements IAuthorUseCase {
 
@@ -19,10 +17,5 @@ public class AuthorUseCaseImpl implements IAuthorUseCase {
     @Override
     public Author create(Author author) {
         return authorPort.create(author);
-    }
-
-    @Override
-    public Author findById(UUID authorId) {
-        return authorPort.findById(authorId).orElseThrow(() -> new IllegalArgumentException("El autor no existe."));
     }
 }

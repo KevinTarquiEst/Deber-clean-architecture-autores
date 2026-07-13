@@ -1,8 +1,8 @@
 package org.cat.usercleanarchitecture.aplication.usecases;
 
 import org.cat.usercleanarchitecture.aplication.ports.input.IBookUseCase;
-import org.cat.usercleanarchitecture.aplication.ports.output.AuthorPort;
 import org.cat.usercleanarchitecture.aplication.ports.output.BookPort;
+import org.cat.usercleanarchitecture.aplication.service.AuthorService;
 import org.cat.usercleanarchitecture.domain.model.Book;
 import org.springframework.stereotype.Component;
 
@@ -13,27 +13,22 @@ import java.util.UUID;
 public class BookUseCaseImpl implements IBookUseCase {
 
     private final BookPort bookPort;
-    private final AuthorPort authorPort;
+    private final AuthorService authorService;
 
-    public BookUseCaseImpl(BookPort bookPort, AuthorPort authorPort) {
+    public BookUseCaseImpl(BookPort bookPort, AuthorService authorService) {
         this.bookPort = bookPort;
-        this.authorPort = authorPort;
+        this.authorService = authorService;
     }
 
     @Override
     public Book create(Book book) {
-        validateAuthorExists(book.getAuthorId());
+        authorService.findById(book.getAuthorId());
         return bookPort.create(book);
     }
 
     @Override
     public List<Book> findByAuthorAndYear(UUID authorId, Integer year) {
-        validateAuthorExists(authorId);
+        authorService.findById(authorId);
         return bookPort.findByAuthorAndYear(authorId, year);
-    }
-
-    private void validateAuthorExists(UUID authorId) {
-        if (authorId == null || authorPort.findById(authorId).isEmpty())
-            throw new IllegalArgumentException("El autor no existe.");
     }
 }
