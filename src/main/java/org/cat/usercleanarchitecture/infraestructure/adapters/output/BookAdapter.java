@@ -6,7 +6,6 @@ import org.cat.usercleanarchitecture.infraestructure.adapters.output.mapper.Book
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class BookAdapter implements BookPort {
@@ -29,7 +28,7 @@ public class BookAdapter implements BookPort {
     }
 
     @Override
-    public List<Book> findByAuthorAndYear(UUID authorId, Integer year) {
-        return bookRepository.findByAuthorIdAndYear(authorId, year).stream().map(BookEntityMapper.INSTANCE::toBook).toList();
+    public List<Book> findByAuthorNameAndYear(String name, Integer year) {
+        return bookRepository.findByAuthorNameAndYear(name, year).stream().map(BookEntityMapper.INSTANCE::toBook).toList();
     }
 }
